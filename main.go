@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-protocol-buffer/src/enum/enumpb"
 	"go-protocol-buffer/src/simple/simplepb"
 	"io/ioutil"
 	"log"
@@ -14,6 +15,17 @@ func main() {
 	sm := doSimple()
 	readAndWriteDemo(sm)
 	jsonDemo(sm)
+
+	doEnum()
+}
+
+func doEnum() {
+	em := enumpb.EnumMessage{
+		Id:           42,
+		DayOfTheWeek: enumpb.DayOfTheWeek_THURSDAY,
+	}
+	em.DayOfTheWeek = enumpb.DayOfTheWeek_MOMDAY
+	fmt.Println(em)
 }
 
 //did a bit differently with tutorial, directrly pointing to struct of protocol buffer
