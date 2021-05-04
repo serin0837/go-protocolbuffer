@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-protocol-buffer/src/complex/complexpb"
 	"go-protocol-buffer/src/enum/enumpb"
 	"go-protocol-buffer/src/simple/simplepb"
 	"io/ioutil"
@@ -17,8 +18,29 @@ func main() {
 	jsonDemo(sm)
 
 	doEnum()
+	doComplete()
 }
 
+func doComplete() {
+	cm := complexpb.ComplexMessage{
+		OneDummy: &complexpb.DummyMessage{
+			Id:   1,
+			Name: "first message",
+		},
+		MultipleDummy: []*complexpb.DummyMessage{
+			&complexpb.DummyMessage{
+				Id:   2,
+				Name: "second message",
+			},
+			&complexpb.DummyMessage{
+				Id:   3,
+				Name: "third message",
+			},
+		},
+	}
+
+	fmt.Println(cm)
+}
 func doEnum() {
 	em := enumpb.EnumMessage{
 		Id:           42,
